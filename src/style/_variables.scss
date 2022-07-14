@@ -1,6 +1,11 @@
 // Base Colours
 $black: #000 !default;
 $white: #fff !default;
+$opslevel-gray: #FAFAFA !default; // opslevel-custom-gray
+$opslevel-button-gray: #F5F5F5 !default; // opslevel-custom-gray
+$opslevel-border-gray: #D9D9D9 !default; // opslevel-custom-border-gray
+$opslevel-font-gray: #595959 !default; // gray font used for versions
+$opslevel-version-blue: #1890FF !default; // blue used for version stamp
 $gray-50: lighten($black, 92%) !default; //ebebeb
 $gray-200: lighten($black, 62.75%) !default; // #a0a0a0
 $gray-300: lighten($black, 56.5%) !default; // #909090
@@ -43,14 +48,24 @@ $color-danger: #f00 !default;
 
 $color-primary-hover: lighten($color-primary, .5%) !default;
 
-$_color-post: #49cc90 !default;
-$_color-get: #61affe !default;
-$_color-put: #fca130 !default;
-$_color-delete: #f93e3e !default;
+// We invert the default swagger behaviour with colours. Swagger uses white font
+// but a coloured button. Instead we set the button colour to be a standard grey
+// and then change the text colour based on these values
+$_color-post: #08979C !default;
+$_color-get: #096DD9 !default;
+$_color-put: #FF7A45 !default;
+$_color-delete: #CF1322 !default;
 $_color-head: #9012fe !default;
-$_color-patch: #50e3c2 !default;
-$_color-disabled: #ebebeb !default;
+$_color-patch: #722ED1 !default;
+$_color-disabled: #8C8C8C !default;
 $_color-options: #0d5aa7 !default;
+$_color-background-button: $opslevel-button-gray;
+
+$_color-1xx: #1890FF !default;
+$_color-2xx: #52C41A !default;
+$_color-3xx: #FA8C16 !default;
+$_color-4xx: #F5222D !default;
+$_color-5xx: #A8071A !default;
 
 // Authorize
 
@@ -109,31 +124,36 @@ $form-checkbox-box-shadow-color: $concrete-gray !default;
 // Information
 
 $info-code-background-color: $black !default;
-$info-code-font-color: $_color-head !default;
+$info-code-font-color: $opslevel-version-blue !default;
 
 $info-link-font-color: $color-info !default;
 $info-link-font-color-hover: $info-link-font-color !default;
 
-$info-title-small-background-color: $waterloo-gray !default;
+$info-title-small-background-color: $opslevel-gray !default;
+$info-title-small-background-border-color: $opslevel-border-gray !default;
+$info-title-small-version-stamp-color: $white !default;
+$info-title-small-version-stamp-background-color: $opslevel-version-blue !default;
 
-$info-title-small-pre-font-color: $white !default;
+$info-title-small-pre-font-color: $opslevel-font-gray !default;
 
 // Layout
 
 $opblock-border-color: $black !default;
 $opblock-box-shadow-color: $black !default;
 
+$opblock-tag-section-border-color: $opslevel-border-gray !default;
 $opblock-tag-border-bottom-color: $bright-gray !default;
-$opblock-tag-background-color-hover: $black !default;
+$opblock-tag-background-color-hover: $white !default;
 
 $opblock-tab-header-tab-item-active-h4-span-after-background-color: $gray-400 !default;
 
 $opblock-isopen-summary-border-bottom-color: $black !default;
 
-$opblock-isopen-section-header-background-color: $white !default;
+$opblock-isopen-section-header-background-color: $opslevel-gray !default;
 $opblock-isopen-section-header-box-shadow-color: $black !default;
 
-$opblock-summary-method-background-color: $black !default;
+$opblock-summary-method-background-color: $opslevel-gray !default;
+$opblock-summary-method-border-color: $opslevel-border-gray !default;
 $opblock-summary-method-font-color: $white !default;
 $opblock-summary-method-text-shadow-color: $black !default;
 
@@ -145,7 +165,7 @@ $response-col-status-undocumented-font-color: $gray-300 !default;
 
 $response-col-links-font-color: $gray-300 !default;
 
-$opblock-body-background-color: $agate-gray !default;
+$opblock-body-background-color: $white !default;
 $opblock-body-font-color: $white !default;
 
 $scheme-container-background-color: $white !default;
@@ -159,8 +179,8 @@ $server-container-computed-url-code-font-color: $gray-400 !default;
 $loading-container-before-border-color: $gray-650 !default;
 $loading-container-before-border-top-color: $black !default;
 
-$response-content-type-controls-accept-header-select-border-color: $japanese-laurel !default;
-$response-content-type-controls-accept-header-small-font-color: $japanese-laurel !default;
+$response-content-type-controls-accept-header-select-border-color: $mako-gray !default;
+$response-content-type-controls-accept-header-small-font-color: $bright-gray !default;
 
 // Modal
 
@@ -182,7 +202,7 @@ $model-deprecated-font-color: $gray-200 !default;
 $model-hint-font-color: $gray-50 !default;
 $model-hint-background-color: $black !default;
 
-$section-models-border-color: $bright-gray !default;
+$section-models-border-color: $opslevel-border-gray !default;
 
 $section-models-isopen-h4-border-bottom-color: $section-models-border-color !default;
 
@@ -191,7 +211,8 @@ $section-models-h4-background-color-hover: $black !default;
 
 $section-models-h5-font-color: $gray-500 !default;
 
-$section-models-model-container-background-color: $black !default;
+$section-models-model-container-background-color: $opslevel-gray !default;
+$section-models-model-container-border-color: $opslevel-border-gray !default;
 
 $section-models-model-box-background-color: $black !default;
 
