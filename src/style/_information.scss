@@ -1,6 +1,6 @@
 .info
 {
-    margin: 50px 0;
+    margin: 20px 0;
 
     &.failed-config
     { 
@@ -64,7 +64,7 @@
 
     .title
     {
-        font-size: 36px;
+        font-size: 20px;
 
         margin: 0;
 
@@ -75,21 +75,26 @@
             font-size: 10px;
 
             position: relative;
-            top: -5px;
 
             display: inline-block;
 
             margin: 0 0 0 5px;
             padding: 2px 4px;
 
-            vertical-align: super;
+            vertical-align: middle;
 
-            border-radius: 57px;
+            border-radius: 2px;
+            border: 1px solid $info-title-small-background-border-color;
             background: $info-title-small-background-color;
             
             &.version-stamp
             {
-                background-color: #89bf04;
+                background-color: $info-title-small-version-stamp-background-color;
+                border: 0;
+                pre
+                {
+                    color: $info-title-small-version-stamp-color;
+                }
             }
 
             pre
@@ -100,5 +105,13 @@
                 @include text_headline($info-title-small-pre-font-color);
             }
         }
+    }
+    /* This is a hack to not show any additional info at the top of the rendered swagger
+     * ui. While we should use a custom layout, that is significantly more work
+     * at the moment
+     */
+    .description, .info__tos, .info__contact, .info__license, .info__extdocs
+    {
+        display: none !important;
     }
 }

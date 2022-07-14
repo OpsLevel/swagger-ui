@@ -119,10 +119,7 @@
   border-bottom: 0;
   padding: 0;
   cursor: pointer;
-
-  &:focus {
-    outline: auto;
-  }
+  width: 100%;
 }
 
 .expand-methods,
@@ -135,6 +132,7 @@
     {
         width: 20px;
         height: 20px;
+        transform: rotate(270deg);
     }
 }
 

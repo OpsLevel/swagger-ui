@@ -1,7 +1,6 @@
 .wrapper
 {
     width: 100%;
-    max-width: 1460px;
     margin: 0 auto;
     padding: 0 20px;
     box-sizing: border-box;
@@ -11,6 +10,15 @@
 {
     display: flex;
     flex-direction: column;
+    border-radius: 3px;
+    border: $opblock-tag-section-border-color solid 1px;
+    padding: 5px;
+    margin-bottom: 10px;
+    .markdown, .renderedMarkdown {
+        p, pre {
+          margin: 0;
+        }
+    }
 }
 
 .try-out.btn-group {
@@ -28,37 +36,37 @@
     display: flex;
     align-items: center;
 
-    padding: 10px 20px 10px 10px;
+    padding: 5px 20px 5px 5px;
 
     cursor: pointer;
     transition: all .2s;
 
-    border-bottom: 1px solid rgba($opblock-tag-border-bottom-color, .3);
 
     &:hover
     {
-        background: rgba($opblock-tag-background-color-hover,.02);
+        background: $opblock-tag-background-color-hover;
     }
 }
 
 @mixin method($color)
 {
-    border-color: $color;
-    background: rgba($color, .1);
+    border-color: $opblock-summary-method-border-color;
+    background: $opblock-summary-method-background-color;
 
     .opblock-summary-method
     {
-        background: $color;
+        background-color: $_color-background-button;
+        color: $color;
     }
 
     .opblock-summary
     {
-        border-color: $color;
+        border-color: $opblock-summary-method-border-color;
     }
 
     .tab-header .tab-item.active h4 span:after
     {
-        background: $color;
+        background:$opblock-summary-method-background-color;
     }
 }
 
@@ -67,9 +75,9 @@
 
 .opblock-tag
 {
-    font-size: 24px;
+    font-size: 18px;
 
-    margin: 0 0 5px 0;
+    margin: 0;
 
     @include text_headline();
 
@@ -198,11 +206,18 @@
 
 .opblock
 {
-    margin: 0 0 15px 0;
+    // Only add the border when the description exists otherwise we end up with 2 borders stacked, making a thicker line
+    .opblock-description-wrapper + .opblock-section
+    {
+        .opblock-section-header
+        {
+            border-top: 1px solid $opblock-summary-method-border-color;
+        }
+    }
+    margin: 0 0 5px 0;
 
     border: 1px solid $opblock-border-color;
     border-radius: 4px;
-    box-shadow: 0 0 3px rgba($opblock-box-shadow-color,.19);
 
     .tab-header
     {
@@ -255,7 +270,13 @@
         .opblock-summary
         {
             border-bottom: 1px solid $opblock-isopen-summary-border-bottom-color;
+
+            svg.arrow
+            {
+                transform: rotate(180deg);
+            }
         }
+
     }
 
     .opblock-section-header
@@ -267,8 +288,10 @@
 
         min-height: 50px;
 
-        background: rgba($opblock-isopen-section-header-background-color,.8);
-        box-shadow: 0 1px 2px rgba($opblock-isopen-section-header-box-shadow-color,.1);
+        background: $opblock-isopen-section-header-background-color;
+        border: 0;
+        border-bottom: 1px solid $opblock-summary-method-border-color;
+
 
         >label
         {
@@ -297,6 +320,8 @@
 
             margin: 0;
 
+            font-weight: bold;
+
             @include text_headline();
         }
     }
@@ -307,13 +332,12 @@
         font-weight: bold;
 
         min-width: 80px;
-        padding: 6px 0;
+        padding: 10px;
 
         text-align: center;
 
-        border-radius: 3px;
+        border-radius: 3px 0px 0px 3px;
         background: $opblock-summary-method-background-color;
-        text-shadow: 0 1px 0 rgba($opblock-summary-method-text-shadow-color,.1);
 
         @include text_headline($opblock-summary-method-font-color);
     }
@@ -333,7 +357,7 @@
 
         word-break: break-word;
 
-        padding: 0 10px;
+        padding: 0 20px;
 
         @include text_code();
 
@@ -406,6 +430,11 @@
                     width: 24px;
                 }
             }
+        }
+
+        svg.arrow
+        {
+            transform: rotate(270deg);
         }
     }
 
@@ -641,6 +670,39 @@
     }
 }
 
+@mixin status_code($color)
+{
+    .response-col_status
+    {
+      color: $color;
+    }
+}
+
+.response[data-code^="1"]
+{
+    @include status_code($_color-1xx);
+}
+
+.response[data-code^="2"]
+{
+    @include status_code($_color-2xx);
+}
+
+.response[data-code^="3"]
+{
+    @include status_code($_color-3xx);
+}
+
+.response[data-code^="4"]
+{
+    @include status_code($_color-4xx);
+}
+
+.response[data-code^="5"]
+{
+    @include status_code($_color-5xx);
+}
+
 .response-col_status
 {
     font-size: 14px;
@@ -683,6 +745,7 @@
 
 .opblock-body
 {
+  background: $opblock-body-background-color;
   .opblock-loading-animation
   {
     display: block;
@@ -762,11 +825,9 @@
 
 .scheme-container
 {
-    margin: 0 0 20px 0;
-    padding: 30px 0;
+    padding: 10px 0;
 
     background: $scheme-container-background-color;
-    box-shadow: 0 1px 2px 0 rgba($scheme-container-box-shadow-color,.15);
 
     .schemes
     {
@@ -931,6 +992,21 @@ section
     h3
     {
         @include text_headline();
+
+    }
+    .is-open
+    {
+        .expand-operation
+        {
+            svg
+            {
+                transform: rotate(180deg);
+            }
+        }
+        .opblock-tag
+        {
+            margin: 0 0 5px 0;
+        }
     }
 }
 
