@@ -2,9 +2,9 @@
 # We don't declare them here — take a look at our docs.
 # https://github.com/swagger-api/swagger-ui/blob/master/docs/usage/configuration.md
 
-FROM nginx:1.21.6-alpine
+FROM nginx:1.23.4-alpine
 
-RUN apk update && apk add --no-cache "nodejs>=14.17.6-r0"
+RUN apk update && apk add --no-cache "nodejs>=18.14.1-r0 "
 
 LABEL maintainer="fehguy"
 
